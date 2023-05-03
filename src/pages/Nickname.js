@@ -32,7 +32,11 @@ function Nickname() {
     <NicknameContainer>
       <NicknameDiv>
         <NicknameTitle>오저네임 입력</NicknameTitle>
-        <NicknameInput placeholder="이름을 입력하세요!" type="text" onChange={nicknameChange}></NicknameInput>
+        <NicknameInput
+          placeholder="이름을 입력하세요!"
+          type="text"
+          onChange={nicknameChange}
+        ></NicknameInput>
         <NicknameBtn onClick={ozerHandler}>오저 입장</NicknameBtn>
       </NicknameDiv>
     </NicknameContainer>

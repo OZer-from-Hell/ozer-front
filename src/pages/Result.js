@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import success from "../assets/success.png";
 import soso from "../assets/soso.png";
 import fail from "../assets/fail.png";
+import { hover } from "@testing-library/user-event/dist/hover";
 
 function Result() {
   const nickname = useRecoilValue(ozerNickname);
@@ -32,15 +33,69 @@ function Result() {
   }, []);
 
   return resultImg ? (
-    <div>
-      <p>{nickname}...당신은...</p>
-      <img src={resultImg} alt="결과" width={300} />
-      <button onClick={() => navigate("/rank")}>랭킹보기</button>
-      <button onClick={() => navigate("/test")}>다시하기</button>
-    </div>
+    <ResultContainer>
+      <ResultNicknameDiv>
+        <ResultNickname>"{nickname}"...당신은...</ResultNickname>
+      </ResultNicknameDiv>
+      <ResultImgDiv>
+        <img src={resultImg} alt="결과" width={270} />
+      </ResultImgDiv>
+      <ResultBtnDiv>
+        <ResultBtn onClick={() => navigate("/rank")}>랭킹보기</ResultBtn>
+        <ResultBtn onClick={() => navigate("/test")}>다시하기</ResultBtn>
+      </ResultBtnDiv>
+    </ResultContainer>
   ) : (
     ""
   );
 }
 
 export default Result;
+
+const ResultContainer = styled.div`
+  width: 375px;
+  height: 100vh;
+  margin: 0 auto;
+`;
+
+const ResultNicknameDiv = styled.div`
+  width: 375px;
+  margin: 0 auto;
+  /* width: 100%; */
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  border: 3px solid black;
+  border-radius: 20px;
+  margin-bottom: 10px;
+`;
+
+const ResultNickname = styled.p`
+  font-size: 1.4rem;
+  font-weight: bold;
+`;
+
+const ResultImgDiv = styled.div`
+  width: 375px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  border: 3px solid black;
+  border-radius: 20px;
+`;
+
+const ResultBtnDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+`;
+
+const ResultBtn = styled.button`
+  padding: 10px 20px 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: 3px solid black;
+  border-radius: 20px;
+  margin: 5px;
+  background: none;
+`;
