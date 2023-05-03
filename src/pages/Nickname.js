@@ -9,7 +9,7 @@ function Nickname() {
   const list = useRecoilValue(ozerlist);
   const [nickname, setNickname] = useRecoilState(ozerNickname);
   const [ozerUserId, setOzerUserId] = useRecoilState(ozerId);
-  const BASE_URL = process.env.REACT_APP_BASE_URL;
+
   const navigate = useNavigate();
 
   const nicknameChange = (e) => {
@@ -18,7 +18,7 @@ function Nickname() {
 
   const ozerHandler = () => {
     axios
-      .post(`${BASE_URL}api/ozers/items`, { list, nickname })
+      .post(`api/ozers/items`, { list, nickname })
       .then((res) => {
         console.log(res.data);
         setOzerUserId(res.data.id);
@@ -31,12 +31,8 @@ function Nickname() {
   return (
     <NicknameContainer>
       <NicknameDiv>
-        <NicknameTitle>오저의 이름을 입력하세요</NicknameTitle>
-        <NicknameInput
-          placeholder="이름을 입력하세요!"
-          type="text"
-          onChange={nicknameChange}
-        ></NicknameInput>
+        <NicknameTitle>오저네임 입력</NicknameTitle>
+        <NicknameInput placeholder="이름을 입력하세요!" type="text" onChange={nicknameChange}></NicknameInput>
         <NicknameBtn onClick={ozerHandler}>오저 입장</NicknameBtn>
       </NicknameDiv>
     </NicknameContainer>

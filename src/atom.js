@@ -2,15 +2,20 @@ import { atom } from "recoil";
 
 export const ozerNickname = atom({
   key: "ozerNickname",
-  default: ""
+  default: null,
 });
 
 export const ozerId = atom({
   key: "ozerId",
-  default: ""
+  default: null,
 });
 
 export const ozerlist = atom({
   key: "ozerlist",
-  default: 1
+  default: 1,
+});
+
+export const testResult = atom({
+  key: "testResult",
+  default: null,
 });
