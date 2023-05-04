@@ -20,12 +20,13 @@ function Nickname() {
     axios
       .post(`api/ozers/items`, { list, nickname })
       .then((res) => {
-        console.log(res.data);
         setOzerUserId(res.data.id);
         navigate("/test");
       })
       .catch((err) => {
-        console.log(err);
+        if (err.response.status == 400) {
+          alert("유효하지 않은 닉네임 입니다!");
+        }
       });
   };
   return (
@@ -33,11 +34,7 @@ function Nickname() {
       <MainBox>
         <NicknameDiv>
           <NicknameTitle>닉네임을 입력해주세요!</NicknameTitle>
-          <NicknameInput
-            placeholder="닉네임은 20자까지 가능해요!"
-            type="text"
-            onChange={nicknameChange}
-          ></NicknameInput>
+          <NicknameInput placeholder="닉네임 20자 이내" type="text" onChange={nicknameChange}></NicknameInput>
           <NicknameBtn onClick={ozerHandler}>테스트 시작</NicknameBtn>
         </NicknameDiv>
       </MainBox>
@@ -81,6 +78,8 @@ const NicknameInput = styled.input`
   padding: 15px;
   border: 1px solid black;
   border-radius: 20px;
+  font-size: 1.4em;
+  font-family: "NeoDunggeunmoPro-Regular";
 `;
 const NicknameBtn = styled.button`
   width: 180px;
@@ -92,4 +91,6 @@ const NicknameBtn = styled.button`
   border-radius: 20px;
   margin-top: 20px;
   font-size: 1.2rem;
+  font-family: "NeoDunggeunmoPro-Regular";
+  cursor: pointer;
 `;

@@ -16,9 +16,7 @@ function Main() {
       .then((res) => {
         setTotalData(res.data);
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => {});
   }, []);
 
   return (
@@ -105,6 +103,9 @@ const TotalDiv = styled.div`
 
 const TotalNum = styled.div`
   margin: 20px;
+  font-size: 20px;
+
+  font-family: "NeoDunggeunmoPro-Regular";
 `;
 
 const BtnDiv = styled.div`
@@ -118,13 +119,14 @@ const StartButton = styled.button`
   background-color: black;
   color: white;
   padding: 10px;
-  font-size: 15px;
+  font-size: 20px;
   border: none;
   border-radius: 10px;
   cursor: pointer;
   &:hover {
     background-color: red;
   }
+  font-family: "NeoDunggeunmoPro-Regular";
 `;
 
 const TutorImg = styled.div`

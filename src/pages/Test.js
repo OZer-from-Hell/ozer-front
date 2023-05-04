@@ -11,6 +11,7 @@ import student_none from "../assets/student_none.gif";
 import tutor_false from "../assets/tutor_false.gif";
 import tutor_true from "../assets/tutor_true.gif";
 import tutor_none from "../assets/tutor_none.gif";
+import Parser from "html-react-parser";
 
 function Test() {
   const list_id = useRecoilValue(ozerlist);
@@ -33,24 +34,18 @@ function Test() {
     axios
       .get(`api/questions/list?list_id=${list_id}`)
       .then((res) => {
-        console.log(res.data);
         setQuestions(res.data);
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => {});
   }, []);
 
   const select = (e) => {
-    console.log(e.target.id);
     setLoading(true);
     if (e.target.id == questions[index].answer) {
-      console.log("정답 !!");
       setStudent(student_true);
       setTutor(tutor_true);
       setAnswers((answers) => (answers += "1"));
     } else {
-      console.log("오답 !!");
       setStudent(student_false);
       setTutor(tutor_false);
       setAnswers((answers) => (answers += "0"));
@@ -64,13 +59,10 @@ function Test() {
           axios
             .patch(`api/ozers/items`, { user_id, answers })
             .then((res) => {
-              console.log(res.data);
               setResult(res.data);
               navigate("/result");
             })
-            .catch((err) => {
-              console.log(err);
-            });
+            .catch((err) => {});
         } else {
           setIndex((index) => (index += 1));
           setStudent(student_none);
@@ -84,33 +76,30 @@ function Test() {
   return questions ? (
     <TestContainer>
       <ProgressDiv>
-        <ProgressBar
-          completed={parseInt(((index + 1) / questions.length) * 100)}
-          bgColor="black"
-        />
+        <ProgressBar completed={parseInt(((index + 1) / questions.length) * 100)} bgColor="black" />
       </ProgressDiv>
 
       <TestDiv>
         <TestNum>문제 {index + 1}.</TestNum>
-        <TestQuestion>{questions[index].content}</TestQuestion>
+        <TestQuestion>{Parser(questions[index].content)}</TestQuestion>
         {loading ? (
           <QuestionAnswer>{student == student_true ? "O" : "X"}</QuestionAnswer>
         ) : (
           <TestOption>
             <TestOptionDiv>
               <TestBtn id="1" onClick={select}>
-                {questions[index].no1}
+                {Parser(questions[index].no1)}
               </TestBtn>
               <TestBtn id="2" onClick={select}>
-                {questions[index].no2}
+                {Parser(questions[index].no2)}
               </TestBtn>
             </TestOptionDiv>
             <TestOptionDiv>
               <TestBtn id="3" onClick={select}>
-                {questions[index].no3}
+                {Parser(questions[index].no3)}
               </TestBtn>
               <TestBtn id="4" onClick={select}>
-                {questions[index].no4}
+                {Parser(questions[index].no4)}
               </TestBtn>
             </TestOptionDiv>
           </TestOption>
@@ -146,18 +135,22 @@ const ProgressDiv = styled.div`
 
 const TestDiv = styled.div`
   width: 100%;
+  height: 50vh;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   margin-top: 30px;
 `;
-const TestNum = styled.h2``;
+const TestNum = styled.h2`
+  font-family: "NeoDunggeunmoPro-Regular";
+`;
 const TestQuestion = styled.div`
   display: flex;
   font-size: 1.2rem;
   font-weight: bold;
   padding: 20px;
+  font-family: "NeoDunggeunmoPro-Regular";
 `;
 
 const TestOptionDiv = styled.div`
@@ -181,6 +174,8 @@ const TestBtn = styled.button`
   color: white;
   background-color: black;
   font-size: 1rem;
+  font-family: "NeoDunggeunmoPro-Regular";
+  cursor: pointer;
 `;
 
 const TestGif = styled.div`
@@ -188,7 +183,7 @@ const TestGif = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: row;
-  margin-top: 20px;
+  // margin-top: 20px;
 `;
 
 const TestBear = styled.div`

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useRecoilValue, useRecoilState } from "recoil";
 import styled from "styled-components";
 import { ozerNickname, testResult } from "../atom";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import success from "../assets/success.png";
 import soso from "../assets/soso.png";
@@ -19,13 +18,10 @@ function Result() {
       navigate("/");
     } else {
       if (result.score >= 80) {
-        console.log("졸업 !");
         setResultImg(success);
       } else if (result.score < 80 && result.score >= 50) {
-        console.log("분발해");
         setResultImg(soso);
       } else {
-        console.log("다음 기수로 연행");
         setResultImg(fail);
       }
     }
@@ -38,7 +34,7 @@ function Result() {
         <ResultScore>{result.score} 점</ResultScore>
       </ResultNicknameDiv>
       <ResultImgDiv>
-        <img src={resultImg} alt="결과" width={270} />
+        <img src={resultImg} alt="결과" />
       </ResultImgDiv>
       <ResultBtnDiv>
         <ResultBtn onClick={() => navigate("/rank")}>랭킹보기</ResultBtn>
@@ -85,6 +81,7 @@ const ResultScore = styled.div`
 
 const ResultImgDiv = styled.div`
   width: 375px;
+  height: 320px;
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -94,6 +91,8 @@ const ResultBtnDiv = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 50px;
+  font-family: "NeoDunggeunmoPro-Regular";
+  cursor: pointer;
 `;
 
 const ResultBtn = styled.button`
@@ -104,4 +103,6 @@ const ResultBtn = styled.button`
   border-radius: 20px;
   margin: 5px;
   background: none;
+  font-family: "NeoDunggeunmoPro-Regular";
+  cursor: pointer;
 `;
