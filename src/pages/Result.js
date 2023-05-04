@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import success from "../assets/success.png";
 import soso from "../assets/soso.png";
 import fail from "../assets/fail.png";
-import { hover } from "@testing-library/user-event/dist/hover";
 
 function Result() {
   const nickname = useRecoilValue(ozerNickname);
@@ -35,7 +34,8 @@ function Result() {
   return resultImg ? (
     <ResultContainer>
       <ResultNicknameDiv>
-        <ResultNickname>"{nickname}"...당신은...</ResultNickname>
+        <ResultNickname>{nickname}...당신은...</ResultNickname>
+        <ResultScore>{result.score} 점</ResultScore>
       </ResultNicknameDiv>
       <ResultImgDiv>
         <img src={resultImg} alt="결과" width={270} />
@@ -62,17 +62,25 @@ const ResultNicknameDiv = styled.div`
   width: 375px;
   margin: 0 auto;
   /* width: 100%; */
-  margin-top: 30px;
+  margin-top: 40px;
+  margin-bottom: 20px;
   display: flex;
   justify-content: center;
-  border: 3px solid black;
-  border-radius: 20px;
-  margin-bottom: 10px;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const ResultNickname = styled.p`
   font-size: 1.4rem;
   font-weight: bold;
+  font-family: "NeoDunggeunmoPro-Regular";
+`;
+
+const ResultScore = styled.div`
+  padding-top: 20px;
+  font-size: 2.5rem;
+  font-weight: 900;
+  font-family: "NeoDunggeunmoPro-Regular";
 `;
 
 const ResultImgDiv = styled.div`
@@ -80,14 +88,12 @@ const ResultImgDiv = styled.div`
   margin: 0 auto;
   display: flex;
   justify-content: center;
-  border: 3px solid black;
-  border-radius: 20px;
 `;
 
 const ResultBtnDiv = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 50px;
 `;
 
 const ResultBtn = styled.button`

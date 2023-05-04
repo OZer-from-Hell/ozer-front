@@ -30,15 +30,17 @@ function Nickname() {
   };
   return (
     <NicknameContainer>
-      <NicknameDiv>
-        <NicknameTitle>오저네임 입력</NicknameTitle>
-        <NicknameInput
-          placeholder="이름을 입력하세요!"
-          type="text"
-          onChange={nicknameChange}
-        ></NicknameInput>
-        <NicknameBtn onClick={ozerHandler}>오저 입장</NicknameBtn>
-      </NicknameDiv>
+      <MainBox>
+        <NicknameDiv>
+          <NicknameTitle>닉네임을 입력해주세요!</NicknameTitle>
+          <NicknameInput
+            placeholder="닉네임은 20자까지 가능해요!"
+            type="text"
+            onChange={nicknameChange}
+          ></NicknameInput>
+          <NicknameBtn onClick={ozerHandler}>테스트 시작</NicknameBtn>
+        </NicknameDiv>
+      </MainBox>
     </NicknameContainer>
   );
 }
@@ -46,35 +48,48 @@ function Nickname() {
 export default Nickname;
 
 const NicknameContainer = styled.div`
+  width: 100%;
+`;
+
+const MainBox = styled.div`
   width: 375px;
   height: 100vh;
   margin: 0 auto;
 `;
 
 const NicknameTitle = styled.h1`
+  height: 20%;
   padding: 10px;
+  font-size: 1.8rem;
+  font-weight: 900;
+  font-family: "NeoDunggeunmoPro-Regular";
 `;
 
 const NicknameDiv = styled.div`
   width: 100%;
+  height: 80%;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   margin-top: 30px;
 `;
+
 const NicknameInput = styled.input`
   width: 250px;
+  margin-bottom: 40px;
   padding: 15px;
   border: 1px solid black;
   border-radius: 20px;
 `;
 const NicknameBtn = styled.button`
-  width: 100px;
+  width: 180px;
+  height: 60px;
   padding: 10px;
   border: none;
   background-color: black;
   color: white;
-  border-radius: 10px;
+  border-radius: 20px;
   margin-top: 20px;
+  font-size: 1.2rem;
 `;

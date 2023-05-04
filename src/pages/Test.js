@@ -133,13 +133,14 @@ function Test() {
 export default Test;
 
 const TestContainer = styled.div`
-  /* width: 375px; */
+  width: 375px;
   height: 100vh;
   margin: 0 auto;
 `;
 
 const ProgressDiv = styled.div`
-  width: 100%;
+  width: 90%;
+  margin: 0 auto;
   margin-top: 30px;
 `;
 
@@ -166,6 +167,7 @@ const TestOptionDiv = styled.div`
 
 const TestOption = styled.div`
   width: 100%;
+  height: 199px;
   display: flex;
   justify-content: center;
   padding: 20px;
@@ -208,8 +210,9 @@ const TestRabbit = styled.div`
   margin-left: 5px;
 `;
 
-const QuestionAnswer = styled.p`
-  font-size: 3rem;
+const QuestionAnswer = styled.div`
+  height: 239px;
+  font-size: 6rem;
   font-weight: bold;
-  padding: 10px;
+  line-height: 199px;
 `;
